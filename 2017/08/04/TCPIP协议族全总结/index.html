@@ -14,7 +14,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/08/04/TCPIP协议族全总结/_v_images/_image_1501923546_26500.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/08/04/TCPIP协议族全总结/_v_images/_image_1501935382_11478.jpg">
-<meta property="og:updated_time" content="2017-08-05T12:57:33.856Z">
+<meta property="og:updated_time" content="2017-08-05T13:10:12.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP&#x2F;IP全总结">
 <meta name="twitter:description" content="马上要有一大波面试了，所以趁着还有时间把面试需要的几块知识做一个完整的总结，主要分为以下几个部分：TCP/IP,操作系统，C++基础，数据库基础。本博为第一部分，关于TCP/IP的总结。 (一) TCP/IP协议基础TCP/IP不是一个协议，而是一个协议族的统称。里面包含了几个分层的协议，比如网络层的IP协议，传输层的TCP、UDP协议、应用层的http、ftp等协议。首先就要明白TCP/IP协">
@@ -246,7 +246,7 @@
 <h6 id="手动设置（静态更新）"><a href="#手动设置（静态更新）" class="headerlink" title="* 手动设置（静态更新）"></a>* 手动设置（静态更新）</h6><p>在ernest-laptop的linux下，<br>sudo route add -host 192.168.1.109 dev eth0<br>sudo route del -net 192.168.1.0 netmask 255.255.255.0<br>sudo route del default<br>sudo route add default gw 192.168.1.109 dev eth0<br>第一行表示添加192.168.1.109对应的路由项，这样所有从ernest-laptop发送到Kongming20的IP数据报将通过网卡eth0直接发送至目标机器的接受网卡；<br>第二行表示删除192.168.1.0对应的路由项，这样就无法发送至192.168.1.0局域网下的所有主机；<br>第三行表示删除default对应的路由项，这样就无法发送至广域网<br>第四行表示重新设置默认路由项，不过这次网关设置为Kongming20</p>
 <h6 id="动态更新"><a href="#动态更新" class="headerlink" title="* 动态更新"></a>* 动态更新</h6><p>对于大型的路由器，通常通过BGP、RIP、OSPF等协议来发现路径，并更新路由表。</p>
 <h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><p>ARP协议能够实现任意网络层地址到任意物理地址的转换，不过我们在此仅仅讨论IP地址到MAC地址的转换。我们知道每个网卡对应一个MAC地址，那么IP地址数据报是如何对应到MAC的呢？以太网ARP请求、应答报文格式如下：<br><img src="_v_images/_image_1501935382_11478.jpg" alt="image"><br>硬件类型表示物理层的地址类型，1表示mac地址；协议类型表示上层协议，0x080表示IP协议。<br>ARP协议是一种解析协议，每个主机也会维护一个IP-ARP地址对应缓存表，之前对应过的二者都会放在这个缓存表里，如果在这个缓存表中，没有查询到对应的IP地址，那么主机就向自己所在网络发送一个ARP协议包，接到这个协议包的主机都会查询自己的IP是否对应，如果对应，那么就准备好一个包含自己MAC地址的ARP包传回至发送ARP广播的主机，那么发送的主机就会更新自己的ARP协议包，发送广播的主机就会用新的ARP协议包得到对应的MAC地址来封装以太网帧。</p>
-<h2 id="四-ICMP协议，ping和Traceroot"><a href="#四-ICMP协议，ping和Traceroot" class="headerlink" title="(四) ICMP协议，ping和Traceroot"></a>(四) ICMP协议，ping和Traceroot</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>ICMP协议是网络层协议</p>
+<h2 id="四-ICMP协议，ping和Traceroot"><a href="#四-ICMP协议，ping和Traceroot" class="headerlink" title="(四) ICMP协议，ping和Traceroot"></a>(四) ICMP协议，ping和Traceroot</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>ICMP协议是</p>
 
       
       
@@ -259,7 +259,7 @@
         <p><span>本文标题:</span><a href="/2017/08/04/TCPIP协议族全总结/">TCP/IP全总结</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 一头东哥 的个人博客">一头东哥</a></p>
         <p><span>发布时间:</span>2017年08月04日 - 10时23分</p>
-        <p><span>最后更新:</span>2017年08月05日 - 20时57分</p>
+        <p><span>最后更新:</span>2017年08月05日 - 21时10分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/04/TCPIP协议族全总结/" title="TCP/IP全总结">http://yoursite.com/2017/08/04/TCPIP协议族全总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/04/TCPIP协议族全总结/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

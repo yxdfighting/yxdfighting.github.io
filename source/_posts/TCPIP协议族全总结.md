@@ -129,6 +129,12 @@ TCP协议属于传输层协议，相对于UDP三个特点：面向连接、可�
 如果改成两次，会存在这样一种情况：client发送的SYN报文段可能由于某种原因在网络中长时间滞留，由于超时重传，可能已经新的连接建立之后已经关闭了，这时候滞留的SYN报文段发过来，如果只是两次握手，server端会回应ACK，server端就会以为已经建立了连接，这样就会导致资源的浪费，而采用三次握手会有client的再次确认，就可以避免这种现象。四次握手就会出现资源的浪费。
 四次挥手为什么不能像三次握手一样把ack与server端的FIN合并为一条报文？
 实际上，仅用于确认目的的报文段5是可以省略的，报文段5是否存在取决于TCP的延迟确认特性
- ##### * 半关闭状态
+ ##### 半关闭状态
  TCP连接是全双工的，允许两个方向的数据传输被独立关闭。发送端发送FIN收到接受端确认，发送端即进入半关闭状态。
   #### 3. TCP状态转移
+  client:CLOSED->SYN_SEND->ESTABLISHED->FIN_WAIT1->FIN_WAIT2->TIMEWAIT->CLSOED
+  server:CLOSED->SYN_RECVD->ESTABLISHED->CLOSE_WAIT->LAST_ACK->CLOSED
+  需要注意的是client主动关闭时，发送FIN时进入FIN_WAIT1状态，收到ACK，进入FIN_WAIT2状态，收到FIN,发送ACK后进入TIME_WAIT状态，等待2MSL(报文段最大生存时间，建议为2min)后，进入CLOSED。
+  关于TIME_WAIT状态存在的原因：
+  1.可靠的终止TCP连接  因为如果对方没有收到最后的ACK，那么TIME_WAIT的等待时间内会继续收到对方的FIN，收到之后会重新发ACK过去，这样就可以保证在ACK丢失的情况下仍然可靠终止TCP连接
+  2.在linux下，同一个IP+端口是不能被打开2次及以上的，如果不存在TIME_WAIT状态，那么就可以在新的IP+端口上建立TCP连接，这样就有可能把原有的TCP数据（迟到的）接收过来，这样显然是不合适的

@@ -175,6 +175,65 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-各种需要记忆的小Tips" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/09/各种需要记忆的小Tips/" class="article-date">
+      <time datetime="2017-08-09T09:04:58.260Z" itemprop="datePublished">2017-08-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/各种需要记忆的小Tips/">各种需要记忆的小Tips</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>大小端字节序：<br>大端字节序：高位字节在低地址，低位字节在高地址 又称网络字节序（最高位在左边，记为0bit，最低位在右边，记为31bit）<br>小端字节序：低位字节在低地址，高位字节在高地址 </p>
+<p>每个网络维护一个路由表，而不是每个主机；所以Internet上的路由器只有几千个，而不是等同于主机数量</p>
+<p>ARP、RARP本质上属于数据链路层的协议，但是二者与IP协议相同，具有相应的以太网帧数据类型；ICMP、ICGP本质上属于网络层的协议，是IP协议的附属协议，但二者又被封装在IP数据报中</p>
+</blockquote>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-写在开头" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -314,6 +373,9 @@
 <h4 id="2-TCP的连接和关闭"><a href="#2-TCP的连接和关闭" class="headerlink" title="2. TCP的连接和关闭"></a>2. TCP的连接和关闭</h4><p>  <img src="_v_images/_image_1502158196_6334.jpg" alt="image"><br>之前面试被问到为什么三次握手？而不能是两次或四次？<br>如果改成两次，会存在这样一种情况：client发送的SYN报文段可能由于某种原因在网络中长时间滞留，由于超时重传，可能已经新的连接建立之后已经关闭了，这时候滞留的SYN报文段发过来，如果只是两次握手，server端会回应ACK，server端就会以为已经建立了连接，这样就会导致资源的浪费，而采用三次握手会有client的再次确认，就可以避免这种现象。四次握手就会出现资源的浪费。<br>四次挥手为什么不能像三次握手一样把ack与server端的FIN合并为一条报文？<br>实际上，仅用于确认目的的报文段5是可以省略的，报文段5是否存在取决于TCP的延迟确认特性</p>
 <h5 id="半关闭状态"><a href="#半关闭状态" class="headerlink" title="半关闭状态"></a>半关闭状态</h5><p> TCP连接是全双工的，允许两个方向的数据传输被独立关闭。发送端发送FIN收到接受端确认，发送端即进入半关闭状态。</p>
 <h4 id="3-TCP状态转移"><a href="#3-TCP状态转移" class="headerlink" title="3. TCP状态转移"></a>3. TCP状态转移</h4><p>  client:CLOSED-&gt;SYN_SEND-&gt;ESTABLISHED-&gt;FIN_WAIT1-&gt;FIN_WAIT2-&gt;TIMEWAIT-&gt;CLSOED<br>  server:CLOSED-&gt;SYN_RECVD-&gt;ESTABLISHED-&gt;CLOSE_WAIT-&gt;LAST_ACK-&gt;CLOSED<br>  需要注意的是client主动关闭时，发送FIN时进入FIN_WAIT1状态，收到ACK，进入FIN_WAIT2状态，收到FIN,发送ACK后进入TIME_WAIT状态，等待2MSL(报文段最大生存时间，建议为2min)后，进入CLOSED。<br>  关于TIME_WAIT状态存在的原因：<br>  1.可靠的终止TCP连接  因为如果对方没有收到最后的ACK，那么TIME_WAIT的等待时间内会继续收到对方的FIN，收到之后会重新发ACK过去，这样就可以保证在ACK丢失的情况下仍然可靠终止TCP连接<br>  2.在linux下，同一个IP+端口是不能被打开2次及以上的，如果不存在TIME_WAIT状态，那么就可以在新的IP+端口上建立TCP连接，这样就有可能把原有的TCP数据（迟到的）接收过来，这样显然是不合适的</p>
+<blockquote>
+<p>与socket编程结合<br>server: socket、bind、listen</p>
+</blockquote>
 
       
       

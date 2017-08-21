@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>各种需要记忆的小Tips | yxdfighting</title>
+  <title>IO | yxdfighting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="大小端字节序：大端字节序：高位字节在低地址，低位字节在高地址 又称网络字节序（最高位在左边，记为0bit，最低位在右边，记为31bit）小端字节序：低位字节在低地址，高位字节在高地址  每个网络维护一个路由表，而不是每个主机；所以Internet上的路由器只有几千个，而不是等同于主机数量 ARP、RARP本质上属于数据链路层的协议，但是二者与IP协议相同，具有相应的以太网帧数据类型；ICMP、I">
+  <meta name="description" content="##关于阻塞IO与非阻塞IO以read为例子，共分为两步：1、内核缓冲区数据准备好2、把数据从内核缓冲区复制到用户空间  阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。 同步IO和异步IO的主要区别是IO执">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种需要记忆的小Tips">
-<meta property="og:url" content="http://yoursite.com/2017/08/09/各种需要记忆的小Tips/index.html">
+<meta property="og:title" content="IO">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/IO/index.html">
 <meta property="og:site_name" content="yxdfighting">
-<meta property="og:description" content="大小端字节序：大端字节序：高位字节在低地址，低位字节在高地址 又称网络字节序（最高位在左边，记为0bit，最低位在右边，记为31bit）小端字节序：低位字节在低地址，高位字节在高地址  每个网络维护一个路由表，而不是每个主机；所以Internet上的路由器只有几千个，而不是等同于主机数量 ARP、RARP本质上属于数据链路层的协议，但是二者与IP协议相同，具有相应的以太网帧数据类型；ICMP、I">
+<meta property="og:description" content="##关于阻塞IO与非阻塞IO以read为例子，共分为两步：1、内核缓冲区数据准备好2、把数据从内核缓冲区复制到用户空间  阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。 同步IO和异步IO的主要区别是IO执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-09T13:03:40.060Z">
+<meta property="og:updated_time" content="2017-08-21T09:13:15.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="各种需要记忆的小Tips">
-<meta name="twitter:description" content="大小端字节序：大端字节序：高位字节在低地址，低位字节在高地址 又称网络字节序（最高位在左边，记为0bit，最低位在右边，记为31bit）小端字节序：低位字节在低地址，高位字节在高地址  每个网络维护一个路由表，而不是每个主机；所以Internet上的路由器只有几千个，而不是等同于主机数量 ARP、RARP本质上属于数据链路层的协议，但是二者与IP协议相同，具有相应的以太网帧数据类型；ICMP、I">
+<meta name="twitter:title" content="IO">
+<meta name="twitter:description" content="##关于阻塞IO与非阻塞IO以read为例子，共分为两步：1、内核缓冲区数据准备好2、把数据从内核缓冲区复制到用户空间  阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。 同步IO和异步IO的主要区别是IO执">
   
     <link rel="alternative" href="/atom.xml" title="yxdfighting" type="application/atom+xml">
   
@@ -174,11 +174,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-各种需要记忆的小Tips" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IO" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/09/各种需要记忆的小Tips/" class="article-date">
-      <time datetime="2017-08-09T09:04:58.260Z" itemprop="datePublished">2017-08-09</time>
+      <a href="/2017/08/21/IO/" class="article-date">
+      <time datetime="2017-08-21T01:32:47.323Z" itemprop="datePublished">2017-08-21</time>
 </a>
     </div>
   
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      各种需要记忆的小Tips
+      IO
     </h1>
   
 
@@ -208,11 +208,43 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>大小端字节序：<br>大端字节序：高位字节在低地址，低位字节在高地址 又称网络字节序（最高位在左边，记为0bit，最低位在右边，记为31bit）<br>小端字节序：低位字节在低地址，高位字节在高地址 </p>
-<p>每个网络维护一个路由表，而不是每个主机；所以Internet上的路由器只有几千个，而不是等同于主机数量</p>
-<p>ARP、RARP本质上属于数据链路层的协议，但是二者与IP协议相同，具有相应的以太网帧数据类型；ICMP、ICGP本质上属于网络层的协议，是IP协议的附属协议，但二者又被封装在IP数据报中</p>
+        <p>##关于阻塞IO与非阻塞IO<br>以read为例子，共分为两步：<br>1、内核缓冲区数据准备好<br>2、把数据从内核缓冲区复制到用户空间</p>
+<blockquote>
+<p>阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。<br>非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。</p>
+<p>同步IO和异步IO的主要区别是IO执行的主体不同，同步IO主要由用户自己实现IO，调用read，判断返回值，处理逻辑，所以上面所说的阻塞与非阻塞IO都是同步IO；而异步IO则不同，只需要用户调用read之后，剩余的工作交给内核，当内核缓冲区数据准备好之后，就会自己执行回调函数，完成工作。</p>
+<p>多路IO复用，一个线程（进程）可以监听多个文件描述符，一旦某个描述符就绪(读事件或者写事件)，能够有这种机制可以通知程序进行读写操作，但select、poll、epoll本质上都是同步IO，因为整个读写操作都是在收到通知后用户自己执行的。</p>
+<p>epoll、poll、select三者都能提供I/O多路复用的解决方案，在现在linux内核中都有支持，其中epoll是linux系统特有的，而select、poll是支持所有系统的。</p>
 </blockquote>
+<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>select函数监视的文件描述符有三类，分别是readfds、writefds、exceptfds，每个描述符存储在一个fd_set数据类型中<br>int select(int maxfdp1,fd_set <em> restrict readfds,fd_set </em> restrict writefds,fd_set <em> restrict exceptfds,struct tmeval </em>restrict tvptr);<br>返回值：准备就绪的描述符数目；若超时，返回0；出错返回-1<br>需要对我们关心的fd进行设置，有一组四个函数进行设置，先对几个fd_set进行清零，然后可以对我们关心的描述符进行置位,select调用结束后，fd_isset查看相应为是否仍为1。select本质上是通过设置或者检查存放fd标志位的数据结构进行下一步处理。</p>
+<blockquote>
+<p>1、单个进程能够监听的fd有限</p>
+<p>2、本质上是对socket的扫描时轮询方式，即对fd_set中置位的socket进行遍历</p>
+<p>3、需要维护一个存放fd的数组，并且轮询需要在内核中进行，而又需要将结果传回用户空间，所以在二者之间传递该结构时会造成较大的开销</p>
+</blockquote>
+<h4 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h4><p>poll函数类似于select，只是接口有所不同。</p>
+<blockquote>
+<p>int poll(struct pollfd fdarray[],nfds_t nfds,int timeout);</p>
+<p>struct pollfd{int fd;short event;short revents};</p>
+</blockquote>
+<p>每个数组元素指定一个描述符编号以及我们对该描述符感兴趣的条件，poll将用户传入的数组拷贝到内核空间，然后查询每个fd对应的设备状态，如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程，直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历多次无谓的遍历。</p>
+<p>它没有最大连接数的限制，原因是它基于链表存储的，但是同样有一个缺点：</p>
+<blockquote>
+<p>存储大量fd的链表被整体复制与用户态和内核地址空间之间，不管这样的复制是不是有意义。</p>
+<p>poll还有一个特点是“水平触发”，如果报告了fd之后，没有被处理，那么下次poll时还会再次报告该fd。</p>
+<p>随着监视的描述符数量的增长，效率直线下降。</p>
+<h4 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h4><p>epoll精巧的使用了3个方法来实现select方法要做的事：</p>
+<p>1.新建epoll描述符==epoll_create()<br>2.epoll_ctrl(epoll描述符，添加或者删除所有待监控的连接)<br>3.返回的活跃连接 ==epoll_wait（ epoll描述符 ）</p>
+</blockquote>
+<p> 与select相比，epoll分清了频繁调用和不频繁调用的操作。例如，epoll_ctrl是不太频繁调用的，而epoll_wait是非常频繁调用的。这时，epoll_wait却几乎没有入参，这比select的效率高出一大截，而且，它也不会随着并发连接的增加使得入参越发多起来，导致内核执行效率下降。</p>
+<blockquote>
+<p>epoll三大关键要素：mmap、红黑树、链表<br>mmap映射区将内核的一个地址与用户空间的一个地址映射到同一块物理内存地址，减少用户态和内核态之间的数据交换。内核可以直接看到用户空间epoll监听的句柄，效率高；对于要监听的socket，epoll采用红黑树进行存储，添加或者删除epoll都是对红黑树进行操作，所以效率较高，时间复杂度为O（logn）；epoll将添加进来的新事件存储到红黑树上，所以不会出现重复添加，对于已经就绪的事件采用双向链表来存储，同时建立回调机制，每当有新的事件被触发，就会执行回调函数，把相应的事件添加到双向链表中，然后将其复制到用户空间（相对于select、poll需要将所有文件描述符从内核复制到用户空间，epoll只需要将就绪的文件描述符及其事件进行复制即可，效率得到极大提升）。</p>
+<p>epoll的使用<br>int epoll_create(int size);<br>int epoll_ctl ( int epfd, int op, int fd, struct epoll_event <em>event );<br>int epoll_wait ( int epfd, struct epoll_event</em> events, int maxevents, int timeout );</p>
+<p>函数说明：<br>     fd：要操作的文件描述符<br>     op：指定操作类型<br>操作类型：<br>     EPOLL_CTL_ADD：往事件表中注册fd上的事件<br>     EPOLL_CTL_MOD：修改fd上的注册事件<br>     EPOLL_CTL_DEL：删除fd上的注册事件<br>     event：指定事件，它是epoll_event结构指针类型</p>
+<p>struct epoll_event<br>{<br>     __unit32_t events;    // epoll事件<br>     epoll_data_t data;     // 用户数据<br>};</p>
+</blockquote>
+<p>&gt;<br>typedef union epoll_data<br> {<br>     void* ptr;              //指定与fd相关的用户数据<br>     int fd;                 //指定事件所从属的目标文件描述符<br>     uint32_t u32;<br>     uint64_t u64;<br>} epoll_data_t;</p>
+<p>&gt;<br>epoll_wait函数说明：<br>     返回：成功时返回就绪的文件描述符的个数，失败时返回-1并设置errno<br>     timeout：指定epoll的超时时间，单位是毫秒。当timeout为-1是，epoll_wait调用将永远阻塞，直到某个时间发生。当timeout为0        时,epoll_wait调用将立即返回。<br>     maxevents：指定最多监听多少个事件<br>     events：检测到事件，将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。</p>
+<p>&gt;<br>参考<a href="http://blog.chinaunix.net/uid-28541347-id-4273856.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-28541347-id-4273856.html</a><br><a href="http://www.cnblogs.com/lojunren/p/3856290.html" target="_blank" rel="external">http://www.cnblogs.com/lojunren/p/3856290.html</a></p>
 
       
       
@@ -222,13 +254,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/09/各种需要记忆的小Tips/">各种需要记忆的小Tips</a></p>
+        <p><span>本文标题:</span><a href="/2017/08/21/IO/">IO</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 一头东哥 的个人博客">一头东哥</a></p>
-        <p><span>发布时间:</span>2017年08月09日 - 17时04分</p>
-        <p><span>最后更新:</span>2017年08月09日 - 21时03分</p>
+        <p><span>发布时间:</span>2017年08月21日 - 09时32分</p>
+        <p><span>最后更新:</span>2017年08月21日 - 17时13分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/09/各种需要记忆的小Tips/" title="各种需要记忆的小Tips">http://yoursite.com/2017/08/09/各种需要记忆的小Tips/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/09/各种需要记忆的小Tips/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/21/IO/" title="IO">http://yoursite.com/2017/08/21/IO/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/21/IO/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -241,18 +273,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/08/10/C++关联容器及其底层实现/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          C++关联容器及其底层实现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/05/写在开头/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">写在开头</div>
+    <a href="/2017/08/10/C++关联容器及其底层实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++关联容器及其底层实现</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -263,7 +286,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#select"><span class="toc-number">1.</span> <span class="toc-text">select</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#poll"><span class="toc-number">2.</span> <span class="toc-text">poll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#epoll"><span class="toc-number">3.</span> <span class="toc-text">epoll</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -314,13 +337,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/10/C++关联容器及其底层实现/" title="上一篇: C++关联容器及其底层实现">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/08/05/写在开头/" title="下一篇: 写在开头">
+            <a href="/2017/08/10/C++关联容器及其底层实现/" title="下一篇: C++关联容器及其底层实现">
                 <i class="fa fa-angle-right"></i>
             </a>
         

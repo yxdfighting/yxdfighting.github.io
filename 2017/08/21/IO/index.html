@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="yxdfighting">
 <meta property="og:description" content="##关于阻塞IO与非阻塞IO以read为例子，共分为两步：1、内核缓冲区数据准备好2、把数据从内核缓冲区复制到用户空间  阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。 同步IO和异步IO的主要区别是IO执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-21T09:13:15.087Z">
+<meta property="og:updated_time" content="2017-08-21T12:45:40.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IO">
 <meta name="twitter:description" content="##关于阻塞IO与非阻塞IO以read为例子，共分为两步：1、内核缓冲区数据准备好2、把数据从内核缓冲区复制到用户空间  阻塞IO主要是在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数不返回，一直阻塞。非阻塞IO在调用read函数后，如果内核缓冲区数据还没有准备好，那么read函数立即返回负值，如果要实现轮询，需要用户自己实现这部分逻辑。 同步IO和异步IO的主要区别是IO执">
@@ -241,10 +241,10 @@
 <p>epoll的使用<br>int epoll_create(int size);<br>int epoll_ctl ( int epfd, int op, int fd, struct epoll_event <em>event );<br>int epoll_wait ( int epfd, struct epoll_event</em> events, int maxevents, int timeout );</p>
 <p>函数说明：<br>     fd：要操作的文件描述符<br>     op：指定操作类型<br>操作类型：<br>     EPOLL_CTL_ADD：往事件表中注册fd上的事件<br>     EPOLL_CTL_MOD：修改fd上的注册事件<br>     EPOLL_CTL_DEL：删除fd上的注册事件<br>     event：指定事件，它是epoll_event结构指针类型</p>
 <p>struct epoll_event<br>{<br>     __unit32_t events;    // epoll事件<br>     epoll_data_t data;     // 用户数据<br>};</p>
+<p>typedef union epoll_data<br> {<br>     void* ptr;              //指定与fd相关的用户数据<br>     int fd;                 //指定事件所从属的目标文件描述符<br>     uint32_t u32;<br>     uint64_t u64;<br>} epoll_data_t;</p>
+<p>epoll_wait函数说明：<br>     返回：成功时返回就绪的文件描述符的个数，失败时返回-1并设置errno<br>     timeout：指定epoll的超时时间，单位是毫秒。当timeout为-1是，epoll_wait调用将永远阻塞，直到某个时间发生。当timeout为0        时,epoll_wait调用将立即返回。<br>     maxevents：指定最多监听多少个事件<br>     events：检测到事件，将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。</p>
+<p>参考<a href="http://blog.chinaunix.net/uid-28541347-id-4273856.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-28541347-id-4273856.html</a><br><a href="http://www.cnblogs.com/lojunren/p/3856290.html" target="_blank" rel="external">http://www.cnblogs.com/lojunren/p/3856290.html</a></p>
 </blockquote>
-<p>&gt;<br>typedef union epoll_data<br> {<br>     void* ptr;              //指定与fd相关的用户数据<br>     int fd;                 //指定事件所从属的目标文件描述符<br>     uint32_t u32;<br>     uint64_t u64;<br>} epoll_data_t;</p>
-<p>&gt;<br>epoll_wait函数说明：<br>     返回：成功时返回就绪的文件描述符的个数，失败时返回-1并设置errno<br>     timeout：指定epoll的超时时间，单位是毫秒。当timeout为-1是，epoll_wait调用将永远阻塞，直到某个时间发生。当timeout为0        时,epoll_wait调用将立即返回。<br>     maxevents：指定最多监听多少个事件<br>     events：检测到事件，将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。</p>
-<p>&gt;<br>参考<a href="http://blog.chinaunix.net/uid-28541347-id-4273856.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-28541347-id-4273856.html</a><br><a href="http://www.cnblogs.com/lojunren/p/3856290.html" target="_blank" rel="external">http://www.cnblogs.com/lojunren/p/3856290.html</a></p>
 
       
       
@@ -257,7 +257,7 @@
         <p><span>本文标题:</span><a href="/2017/08/21/IO/">IO</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 一头东哥 的个人博客">一头东哥</a></p>
         <p><span>发布时间:</span>2017年08月21日 - 09时32分</p>
-        <p><span>最后更新:</span>2017年08月21日 - 17时13分</p>
+        <p><span>最后更新:</span>2017年08月21日 - 20时45分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/21/IO/" title="IO">http://yoursite.com/2017/08/21/IO/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/21/IO/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

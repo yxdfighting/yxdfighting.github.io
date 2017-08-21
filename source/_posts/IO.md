@@ -66,16 +66,15 @@ int epoll_wait ( int epfd, struct epoll_event* events, int maxevents, int timeou
      EPOLL_CTL_MOD：修改fd上的注册事件
      EPOLL_CTL_DEL：删除fd上的注册事件
      event：指定事件，它是epoll_event结构指针类型
-     
-> 
-struct epoll_event
+
+
+> struct epoll_event
 {
      __unit32_t events;    // epoll事件
      epoll_data_t data;     // 用户数据 
 };
 
->
-typedef union epoll_data
+>typedef union epoll_data
  {
      void* ptr;              //指定与fd相关的用户数据 
      int fd;                 //指定事件所从属的目标文件描述符 
@@ -83,13 +82,11 @@ typedef union epoll_data
      uint64_t u64;
 } epoll_data_t;
 
->
-epoll_wait函数说明：
+>epoll_wait函数说明：
      返回：成功时返回就绪的文件描述符的个数，失败时返回-1并设置errno
      timeout：指定epoll的超时时间，单位是毫秒。当timeout为-1是，epoll_wait调用将永远阻塞，直到某个时间发生。当timeout为0        时,epoll_wait调用将立即返回。
      maxevents：指定最多监听多少个事件
      events：检测到事件，将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。
 
->
-参考http://blog.chinaunix.net/uid-28541347-id-4273856.html
+>参考http://blog.chinaunix.net/uid-28541347-id-4273856.html
 http://www.cnblogs.com/lojunren/p/3856290.html

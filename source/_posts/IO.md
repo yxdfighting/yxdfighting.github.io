@@ -1,5 +1,5 @@
 ---
-title: IO
+title: Unix IO
 ---
 ##关于阻塞IO与非阻塞IO
 以read为例子，共分为两步：
@@ -43,15 +43,24 @@ poll函数类似于select，只是接口有所不同。
 #### epoll
 epoll精巧的使用了3个方法来实现select方法要做的事：
 > 
-1.新建epoll描述符==epoll_create()
-2.epoll_ctrl(epoll描述符，添加或者删除所有待监控的连接)
+1.新建epoll描述符==epoll_create()  
+2.epoll_ctrl(epoll描述符，添加或者删除所有待监控的连接)  
 3.返回的活跃连接 ==epoll_wait（ epoll描述符 ）
 
  与select相比，epoll分清了频繁调用和不频繁调用的操作。例如，epoll_ctrl是不太频繁调用的，而epoll_wait是非常频繁调用的。这时，epoll_wait却几乎没有入参，这比select的效率高出一大截，而且，它也不会随着并发连接的增加使得入参越发多起来，导致内核执行效率下降。
 
 > 
 epoll三大关键要素：mmap、红黑树、链表
-mmap映射区将内核的一个地址与用户空间的一个地址映射到同一块物理内存地址，减少用户态和内核态之间的数据交换。内核可以直接看到用户空间epoll监听的句柄，效率高；对于要监听的socket，epoll采用红黑树进行存储，添加或者删除epoll都是对红黑树进行操作，所以效率较高，时间复杂度为O（logn）；epoll将添加进来的新事件存储到红黑树上，所以不会出现重复添加，对于已经就绪的事件采用双向链表来存储，同时建立回调机制，每当有新的事件被触发，就会执行回调函数，把相应的事件添加到双向链表中，然后将其复制到用户空间（相对于select、poll需要将所有文件描述符从内核复制到用户空间，epoll只需要将就绪的文件描述符及其事件进行复制即可，效率得到极大提升）。
+mmap映射区将内核的一个地址与用户空间的一个地址映射到同一块物理内存地址，减少用户态和内核态之间的数据交换。内核可以直接看到用户空间epoll监听的句柄，效率高；对于要监听的socket，epoll采用红黑树进行存储，添加或者删除epoll都是对红黑树进行操作，所以效率较高，时间复杂度为O（logn）；epoll将添加进来的新事件存储到红黑树上，所以不会出现重复添加，对于已经就绪的事件采用双向链表来存储，同时建立回调机制，每当有新的事件被触发，就会执行回调函数，该回调函数在内核中被称为：ep_poll_callback,把相应的事件添加到双向链表中，然后将其复制到用户空间（相对于select、poll需要将所有文件描述符从内核复制到用户空间，epoll只需要将就绪的文件描述符及其事件进行复制即可，效率得到极大提升）。
+
+>
+ epoll_wait的工作流程：
+
+1.epoll_wait调用ep_poll，当rdlist为空（无就绪fd）时挂起当前进程，直到rdlist不空时进程才被唤醒.  
+2.文件fd状态改变（buffer由不可读变为可读或由不可写变为可写），导致相应fd上的回调函数ep_poll_callback()被调用。  
+3.ep_poll_callback将相应fd对应epitem加入rdlist，导致rdlist不空，进程被唤醒，epoll_wait得以继续执行。  
+4.ep_events_transfer函数将rdlist中的epitem拷贝到txlist中，并将rdlist清空。  
+5.ep_send_events函数（很关键），它扫描txlist中的每个epitem，调用其关联fd对用的poll方法。此时对poll的调用仅仅是取得fd上较新的events（防止之前events被更新），之后将取得的events和相应的fd发送到用户空间（封装在struct epoll_event，从epoll_wait返回）。之后如果这个epitem对应的fd是LT模式监听且取得的events是用户所关心的，则将其重新加入回rdlist，否则（ET模式）不在加入rdlist。  
 
 >epoll的使用
 int epoll_create(int size);
@@ -88,5 +97,20 @@ int epoll_wait ( int epfd, struct epoll_event* events, int maxevents, int timeou
      maxevents：指定最多监听多少个事件
      events：检测到事件，将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。
 
->参考http://blog.chinaunix.net/uid-28541347-id-4273856.html
+>
+关于epoll LT和ET触发二者区别在此处仅做简单总结，具体代码测试可参见后面链接中博客：  
+1.LT:在边沿触发模式下，对于读事件  
+1.当buffer由不可读状态变为可读的时候，即由空变为不空的时候  
+2.当有新数据到达时，即buffer中的待读内容变多的时候  
+3.当buffer中有数据可读（即buffer不空）且用户对相应fd进行epoll_mod IN事件时候  
+对于写事件  
+1.当buffer由不可写变为可写的时候，即由满状态变为不满状态的时候  
+2.当有旧数据被发送走时，即buffer中待写的内容变少的时候  
+3.当buffer中有可写空间（即buffer不满）且用户对相应fd进行epoll_mod OUT事件时候  
+
+2.ET:在边沿触发模式下，对于读事件，buffer中有数据可读的时候，即buffer不空的时候fd的events的可读为就置1，buffer中有空间可写的时候，即buffer不满的时候fd的events的可写位就置1。  
+关于ET模式下的accept问题，如果设置为ET模式，如果在内核缓冲区中一次读取到很多连接请求，但由于ET模式，所以只会触发一次epoll，就会出现我们只做一次accept处理后，就无法读取后续连接，对于这个问题，可以通过在while循环中一直accept直到将缓冲区中请求全部处理完成后，accept就会返回-1,退出循环，同时缓冲区由满变空，之后有新的请求到来的时候，就会触发epoll  
+
+请参考  
+http://blog.chinaunix.net/uid-28541347-id-4273856.html  
 http://www.cnblogs.com/lojunren/p/3856290.html

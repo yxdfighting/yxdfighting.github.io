@@ -218,6 +218,17 @@
 <h4 id="nullptr常量"><a href="#nullptr常量" class="headerlink" title="nullptr常量"></a>nullptr常量</h4><p>关于nullptr与NULL区别,nullptr是C++11中新定义的字面值常量，可以转换为任意类型的指针，NULL是预处理变量，其值为0，运行在编译过程之前。</p>
 <h4 id="类型别名声明"><a href="#类型别名声明" class="headerlink" title="类型别名声明"></a>类型别名声明</h4><p>传统采用typedef关键字，C++11中可以使用using作为别名声明的开始，例如：using SI = Sales_item；</p>
 <h4 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h4><p>在C++11中引入了auto类型说明符，可以让编译器替我们去分析表达式所属的类型，auto让编译器通过初始值来推算变量的类型</p>
+<h4 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h4><p>为了更安全使用动态内存，C++11提供了两种智能指针来管理动态对象，负责自动释放所指向的对象。<br>shared_ptr允许多个指针指向同一个对象；unique_ptr则独占所指向的对象，memory头文件  </p>
+<blockquote>
+<p><strong>shared_ptr</strong></p>
+</blockquote>
+<p>shared_ptr<string> p1;<br>shared_ptr<list<string>&gt;p2;<br>if(p1 &amp;&amp; p1-&gt;empty()) *p1 = “hi”;<br>shared_ptr<int> p3 = make_shared<int>(42);//分配一个动态内存，并初始化<br>每个shared_ptr都有一个关联的计数器，通常称其为引用计数，无论何时拷贝，计数器都会递增；当我们给shared_ptr赋予一个新值或是shared_ptr被销毁，计数器就会递减。一旦一个shared_ptr计数器变为0，就会自动释放自己所管理的对象。  </int></int></list<string></string></p>
+<p>程序使用动态内存出于以下三种原因之一：<br>1.程序不知道自己需要使用多少对象<br>2.程序不知道所需对象的准确类型<br>3.程序需要在多个对象间共享数据    </p>
+<p>关于智能指针的底层实现：类中成员变量包含一个指针，一个引用计数，每次构建新的对象时，就初始化指针同时把引用计数置1；当对象作为另一对象的副本创建时，运行拷贝构造函数拷贝指针同时把引用计数增加1；对对象进行赋值（如果引用计数减为0，则删除对象），减少引用计数；调用析构函数时，构造函数减少引用计数（如果引用计数减为0，则删除基础对象）；重载指针的各种运算符（-&gt;、*、+、-等）  </p>
+<blockquote>
+<p>unique_ptr  </p>
+</blockquote>
+<p>一个unique_ptr拥有它所指向的对象，某个时刻智能有一个unique_ptr指向一个给定对象。当unique_ptr被销毁时，所指向的对象也被销毁。不像shared_ptr，不存在make_shared这样的函数，所以与new结合进行。<br>unique_ptr<double> p1;//可以指向一个double的unique_ptr<br>unique_ptr<int> p2(new int(42));<br>unique_ptr不支持拷贝或者赋值操作，但可以通过realease或者reset将指针所有权从一个unique_ptr转移到另一个unique_ptr。<br>p.reset(p1.reslease());<br>realease成员返回unique_ptr当前保存的指针并将其置为空，reset成员接受一个可选的指针参数，令unique_ptr重新指向给定的指针。</int></double></p>
 
       
       

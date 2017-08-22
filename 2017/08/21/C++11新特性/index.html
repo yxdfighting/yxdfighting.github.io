@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>写在开头 | yxdfighting</title>
+  <title>C++11新特性 | yxdfighting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从腾讯云把家搬到了Github Pages，域名备案了两个月也终于通过了审核，以后就要在这里记录自己的学习和生活啦!  为什么要写博客？ 也不知道为啥，总感觉现在记忆力越来越差了，看过的知识、做过的项目感觉很快就忘得差不多了，很担心某天早晨醒来，连自己名字都记不到了，所以就有了自己写博客的想法，把自己看过的、做过的用博客的形式做一个记录。  目前还是学生，很多东西学得也不深，认真去写一个博客也可">
+  <meta name="description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在开头">
-<meta property="og:url" content="http://yoursite.com/2017/08/05/写在开头/index.html">
+<meta property="og:title" content="C++11新特性">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/C++11新特性/index.html">
 <meta property="og:site_name" content="yxdfighting">
-<meta property="og:description" content="从腾讯云把家搬到了Github Pages，域名备案了两个月也终于通过了审核，以后就要在这里记录自己的学习和生活啦!  为什么要写博客？ 也不知道为啥，总感觉现在记忆力越来越差了，看过的知识、做过的项目感觉很快就忘得差不多了，很担心某天早晨醒来，连自己名字都记不到了，所以就有了自己写博客的想法，把自己看过的、做过的用博客的形式做一个记录。  目前还是学生，很多东西学得也不深，认真去写一个博客也可">
+<meta property="og:description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-05T07:45:04.587Z">
+<meta property="og:updated_time" content="2017-08-22T06:49:44.342Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在开头">
-<meta name="twitter:description" content="从腾讯云把家搬到了Github Pages，域名备案了两个月也终于通过了审核，以后就要在这里记录自己的学习和生活啦!  为什么要写博客？ 也不知道为啥，总感觉现在记忆力越来越差了，看过的知识、做过的项目感觉很快就忘得差不多了，很担心某天早晨醒来，连自己名字都记不到了，所以就有了自己写博客的想法，把自己看过的、做过的用博客的形式做一个记录。  目前还是学生，很多东西学得也不深，认真去写一个博客也可">
+<meta name="twitter:title" content="C++11新特性">
+<meta name="twitter:description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
   
     <link rel="alternative" href="/atom.xml" title="yxdfighting" type="application/atom+xml">
   
@@ -174,11 +174,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-写在开头" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-C++11新特性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/05/写在开头/" class="article-date">
-      <time datetime="2017-08-05T07:44:54.946Z" itemprop="datePublished">2017-08-05</time>
+      <a href="/2017/08/21/C++11新特性/" class="article-date">
+      <time datetime="2017-08-21T13:35:21.101Z" itemprop="datePublished">2017-08-21</time>
 </a>
     </div>
   
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      写在开头
+      C++11新特性
     </h1>
   
 
@@ -208,18 +208,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>从腾讯云把家搬到了Github Pages，域名备案了两个月也终于通过了审核，以后就要在这里记录自己的学习和生活啦!</p>
+        <p>内容主要来自于C++ primer第五版</p>
+<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><blockquote>
+<p>向算法传递函数  </p>
 </blockquote>
-<h2 id="为什么要写博客？"><a href="#为什么要写博客？" class="headerlink" title="为什么要写博客？"></a>为什么要写博客？</h2><ul>
-<li><p>也不知道为啥，总感觉现在记忆力越来越差了，看过的知识、做过的项目感觉很快就忘得差不多了，很担心某天早晨醒来，连自己名字都记不到了，所以就有了自己写博客的想法，把自己看过的、做过的用博客的形式做一个记录。</p>
-</li>
-<li><p>目前还是学生，很多东西学得也不深，认真去写一个博客也可以强迫自己去查一些资料，同时写博客的过程也是一个梳理、总结、再思考的过程。</p>
-</li>
-<li><p>再者，马上就要全面进入校招季了，很多看过的知识、简历上的项目、面试有可能会问到的东西都需要一个平台进行总结。</p>
-</li>
-</ul>
-<p>所以，just do it！！！</p>
+<p><strong>1.谓词</strong><br>谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。<br>bool isShorter(const string &amp;s1,const string &amp;s2)<br>{<br>     return s1.size()&lt;s2.size();<br>}  </p>
+<p>sort(words.begin(),words.end(),isShorter);<br>同样的，我们可以使用find_if()算法来查找第一个具有特定大小的元素，find_if参数为一对迭代器，第三个参数可以为一个谓词，find_if为每个<br>输入序列中的元素调用这个谓词；但find_if只接受一元谓词，但我们的函数需要的输入有string、一个给定大小的数字，不符合条件，所以lambda表达式应运而生。  </p>
+<blockquote>
+<p><strong>2.lambda表达式</strong><br>lambda是一个可调用对象，其本质上是一个未命名的内联函数，一个lambda表达式具有如下形式：<br>[capture list] (parameter list) -&gt;return type {function body}<br>[capture list]是函数中所定义的局部变量的列表(通常为空),剩余部分与常用函数相同。-&gt;在表达式有返回值时用到<br>举个栗子：<br>auto f = [ ]{ return 42; };<br>cout &lt;&lt; f() &lt;&lt; endl;  </p>
+</blockquote>
+<p>[ ]{const string &amp;s1,const string &amp;s2}{ return s1.size() &lt; s2.size() ; }<br>[sz] (const string &amp;s){return }{return s.size() &gt;= sz ;}; //一个lambda只有在其捕获列表中捕获一个它所在函数中的局部变量，才能在函数体中使用该变量。  </p>
+<p>&gt;<br><strong>3.lambda捕获和返回</strong><br>当向一个函数传递一个lambda时，同时定义了一个新类型和该类型的一个对象，传递的参数就是此编译器生成的类类型的未命名对象<br>1.值捕获和引用捕获<br>捕获值列表，是允许我们在Lambda表达式的函数体中直接使用这些值，捕获值列表能捕获的值是所有在此作用域可以访问的值，包括这个作用域里面的临时变量，类的可访问成员，全局变量。<strong>Lambda表达式通过在最前面的方括号[]来明确指明其内部可以访问的外部变量，这一过程也称过Lambda表达式“捕获”了外部变量。</strong>捕获值的方式分两种，一种是按值捕获，一种是按引用捕获。顾名思义，按值捕获是不改变原有变量的值，按引用捕获是可以在Lambda表达式中改变原有变量的值。<br>2.隐式捕获<br>为了指示编译器推断捕获列表，应在捕获列表中写一个&amp;或者=。前者表示引用捕获，后者表示值捕获。<br>10.21  [&amp;a] ( ) mutable-&gt;bool {a–; return a == 0 ? false : true; }()</p>
+<h4 id="long-long类型"><a href="#long-long类型" class="headerlink" title="long long类型"></a>long long类型</h4><p>在32位系统上，int、long、long long、size_t字节数分别为4、4、8、8；在64位机器上，四者依次为4、8、8、8</p>
+<h4 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h4><p>int a = {0};<br>int a{0};<br>在C++11中，列表初始化得到了全面应用，无论是在初始化对象时，还是为对象赋新值时，都可以使用，并且还有相应的好处，那就是在对内置数据类型进行列表初始化时，如果有数据丢失风险时，编译器会报错。</p>
+<h4 id="nullptr常量"><a href="#nullptr常量" class="headerlink" title="nullptr常量"></a>nullptr常量</h4><p>关于nullptr与NULL区别,nullptr是C++11中新定义的字面值常量，可以转换为任意类型的指针，NULL是预处理变量，其值为0，运行在编译过程之前。</p>
+<h4 id="类型别名声明"><a href="#类型别名声明" class="headerlink" title="类型别名声明"></a>类型别名声明</h4><p>传统采用typedef关键字，C++11中可以使用using作为别名声明的开始，例如：using SI = Sales_item；</p>
+<h4 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h4><p>在C++11中引入了auto类型说明符，可以让编译器替我们去分析表达式所属的类型，auto让编译器通过初始值来推算变量的类型</p>
 
       
       
@@ -229,13 +233,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/05/写在开头/">写在开头</a></p>
+        <p><span>本文标题:</span><a href="/2017/08/21/C++11新特性/">C++11新特性</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 一头东哥 的个人博客">一头东哥</a></p>
-        <p><span>发布时间:</span>2017年08月05日 - 15时44分</p>
-        <p><span>最后更新:</span>2017年08月05日 - 15时45分</p>
+        <p><span>发布时间:</span>2017年08月21日 - 21时35分</p>
+        <p><span>最后更新:</span>2017年08月22日 - 14时49分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/05/写在开头/" title="写在开头">http://yoursite.com/2017/08/05/写在开头/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/05/写在开头/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/21/C++11新特性/" title="C++11新特性">http://yoursite.com/2017/08/21/C++11新特性/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/21/C++11新特性/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -248,18 +252,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/08/09/各种需要记忆的小Tips/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          各种需要记忆的小Tips
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/04/TCPIP协议族全总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">TCP/IP全总结</div>
+    <a href="/2017/08/21/IO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Unix IO</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -270,7 +265,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要写博客？"><span class="toc-number">1.</span> <span class="toc-text">为什么要写博客？</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#lambda表达式"><span class="toc-number">1.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#long-long类型"><span class="toc-number">2.</span> <span class="toc-text">long long类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表初始化"><span class="toc-number">3.</span> <span class="toc-text">列表初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nullptr常量"><span class="toc-number">4.</span> <span class="toc-text">nullptr常量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类型别名声明"><span class="toc-number">5.</span> <span class="toc-text">类型别名声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto"><span class="toc-number">6.</span> <span class="toc-text">auto</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -321,13 +316,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/09/各种需要记忆的小Tips/" title="上一篇: 各种需要记忆的小Tips">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/08/04/TCPIP协议族全总结/" title="下一篇: TCP/IP全总结">
+            <a href="/2017/08/21/IO/" title="下一篇: Unix IO">
                 <i class="fa fa-angle-right"></i>
             </a>
         

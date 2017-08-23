@@ -175,6 +175,65 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-进程间通信以及线程死锁总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/22/进程间通信以及线程死锁总结/" class="article-date">
+      <time datetime="2017-08-22T08:11:26.560Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/进程间通信以及线程死锁总结/">进程间通信以及线程死锁总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="进程、线程概念"><a href="#进程、线程概念" class="headerlink" title="进程、线程概念"></a>进程、线程概念</h3><p>unix进程是资源分配的最小单位，每个进程都有自己独立的虚拟内存地址空间，包括未初始化的数据和代码、初始化的数据、堆内存、共享库、栈内存、内核等；线程是程序执行的最小单位，每个进程可以分成为多个线程，每个进程所包含的线程数上限是由操作系统确定的，同一个进程内的线程共享非共享的资源如下：栈内存、线程id、信号屏蔽字、寄存器、error变量；除此之外，都是共享的，包括打开的文件描述符、当前工作目录、用户ID、组ID、内存地址空间（除去栈内存）。</p>
+<h3 id="关于linux文件"><a href="#关于linux文件" class="headerlink" title="关于linux文件"></a>关于linux文件</h3><p>共有三张表，每个进程都有一个文件描述符表，每个进程创建时默认文件描述符（0、1、2表示标准输入、标准输出、标准错误），内核为所有打开的文件维持一张文件表，不同进程的文件表项不同，文件表中包括当前偏移量、文件状态标志、指向v-node的指针，但对一个给定的文件只有一个v-node项，v-node包含了文件类型和对此文件进行各种操作的函数指针。同时，v节点还包含了文件的i节点（i-node，索引信息）,i-node用来记录文件或是目录的属性，  文件类型：普通文件、目录项、块特殊文件、字符特殊文件、FIFO、套接字、符号链接  </p>
+<h4 id="关于文件的软链接与硬链接"><a href="#关于文件的软链接与硬链接" class="headerlink" title="关于文件的软链接与硬链接"></a>关于文件的软链接与硬链接</h4><p>软连接：又称为符号链接，符号链接文件的实际内容（在数据块中）包含了该符号链接所指向的文件的名字，该i节点中的文件类型是S_IFLINK。创建新的目录项的名字和inode的值和原来的对象都不一样。<br>硬连接：每个i节点中都有一个计数链接，其值是指向该i节点的目录项数。只有当连接计数减少为0时，才可以删除文件（也就是释放该文件占有的数据块），在stat结构中，链接计数包含在st_nlink成员中，其基本数据类型是nlink_t,这种链接类型成为硬链接。当创建一个文件或是目录的硬链接时就是在目录里面创建一个新的目录项，目录项的名字和原来被链接的对象名字不同，但是inode结点的值是一样的</p>
+<h3 id="进程间通信方式"><a href="#进程间通信方式" class="headerlink" title="进程间通信方式"></a>进程间通信方式</h3><h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p>int pipe(fd[2]);<br>是一种半双工通信方式，通过该函数创建管道，fd[0]用于读，fd[1]用于写，a进程可以关闭写端fd[1]，从fd[0]读，b进程可以读端fd[0],写入fd[1],<br>这样就实现了a、b进程之间的通信；但是管道这种进程间通信方式有自己的缺陷，只能用在有父子关系的进程间通信。</p>
+<h4 id="有名管道"><a href="#有名管道" class="headerlink" title="有名管道"></a>有名管道</h4><p>int mkfifo(const char<em> filename,mode_t mode);<br>int mkfifoat(int fd,const char</em> filename,mode_t mode);<br>fifo又叫做有名管道，fifo本质上linux操作系统下的一种文件类型，所以我们可以使用open、read、write等函数进行操作，如果是只读open，并且没有设置为O_NONBLOCK，那么open要阻塞到某个进程为写而打开这个fifo，反之亦然；如果设置为O_NONBLOCK，那么open会立即返回，如果没有进程为写打开这个fifo，返回-1，同时errno为ENXIO。<br>要记住一个知识点：如果对一个对端已经关闭的socket进行连续两次write，就会返回一个SIGPIPE，SIGPIPE的默认处理动作是结束进程，所以在服务器处理时需要忽略或者捕获后进行处理。</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-C++11新特性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

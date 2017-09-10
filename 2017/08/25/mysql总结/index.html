@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>C++11新特性 | yxdfighting</title>
+  <title>mysql总结 | yxdfighting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
+  <meta name="description" content="本篇主要来自mysql入门很简单 操作数据库显示、创建、删除数据库创建数据库：create database test;删除数据库：drop database test;查看数据库：show databases;查看引擎：show engines;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++11新特性">
-<meta property="og:url" content="http://yoursite.com/2017/08/21/C++11新特性/index.html">
+<meta property="og:title" content="mysql总结">
+<meta property="og:url" content="http://yoursite.com/2017/08/25/mysql总结/index.html">
 <meta property="og:site_name" content="yxdfighting">
-<meta property="og:description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
+<meta property="og:description" content="本篇主要来自mysql入门很简单 操作数据库显示、创建、删除数据库创建数据库：create database test;删除数据库：drop database test;查看数据库：show databases;查看引擎：show engines;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-22T08:05:02.171Z">
+<meta property="og:updated_time" content="2017-08-25T10:57:10.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++11新特性">
-<meta name="twitter:description" content="内容主要来自于C++ primer第五版 lambda表达式 向算法传递函数    1.谓词谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。bool isShorter(const string &amp;amp;s1,const string &amp;amp;s2){">
+<meta name="twitter:title" content="mysql总结">
+<meta name="twitter:description" content="本篇主要来自mysql入门很简单 操作数据库显示、创建、删除数据库创建数据库：create database test;删除数据库：drop database test;查看数据库：show databases;查看引擎：show engines;">
   
     <link rel="alternative" href="/atom.xml" title="yxdfighting" type="application/atom+xml">
   
@@ -174,11 +174,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-C++11新特性" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/21/C++11新特性/" class="article-date">
-      <time datetime="2017-08-21T13:35:21.101Z" itemprop="datePublished">2017-08-21</time>
+      <a href="/2017/08/25/mysql总结/" class="article-date">
+      <time datetime="2017-08-25T08:40:52.848Z" itemprop="datePublished">2017-08-25</time>
 </a>
     </div>
   
@@ -191,7 +191,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      C++11新特性
+      mysql总结
     </h1>
   
 
@@ -208,33 +208,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>内容主要来自于C++ primer第五版</p>
-<h4 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h4><blockquote>
-<p>向算法传递函数  </p>
-</blockquote>
-<p><strong>1.谓词</strong><br>谓词是一个可调用的表达式，其返回结果是一个能用做条件的值。分为一元谓词与二元谓词（根据接受的参数数量),接受谓词的算法对输入序列中的每个元素调用谓词，因此元素类型必须能够转化为谓词的参数类型。<br>bool isShorter(const string &amp;s1,const string &amp;s2)<br>{<br>     return s1.size()&lt;s2.size();<br>}  </p>
-<p>sort(words.begin(),words.end(),isShorter);<br>同样的，我们可以使用find_if()算法来查找第一个具有特定大小的元素，find_if参数为一对迭代器，第三个参数可以为一个谓词，find_if为每个<br>输入序列中的元素调用这个谓词；但find_if只接受一元谓词，但我们的函数需要的输入有string、一个给定大小的数字，不符合条件，所以lambda表达式应运而生。  </p>
-<blockquote>
-<p><strong>2.lambda表达式</strong><br>lambda是一个可调用对象，其本质上是一个未命名的内联函数，一个lambda表达式具有如下形式：<br>[capture list] (parameter list) -&gt;return type {function body}<br>[capture list]是函数中所定义的局部变量的列表(通常为空),剩余部分与常用函数相同。-&gt;在表达式有返回值时用到<br>举个栗子：<br>auto f = [ ]{ return 42; };<br>cout &lt;&lt; f() &lt;&lt; endl;  </p>
-</blockquote>
-<p>[ ]{const string &amp;s1,const string &amp;s2}{ return s1.size() &lt; s2.size() ; }<br>[sz] (const string &amp;s){return }{return s.size() &gt;= sz ;}; //一个lambda只有在其捕获列表中捕获一个它所在函数中的局部变量，才能在函数体中使用该变量。  </p>
-<p>&gt;<br><strong>3.lambda捕获和返回</strong><br>当向一个函数传递一个lambda时，同时定义了一个新类型和该类型的一个对象，传递的参数就是此编译器生成的类类型的未命名对象<br>1.值捕获和引用捕获<br>捕获值列表，是允许我们在Lambda表达式的函数体中直接使用这些值，捕获值列表能捕获的值是所有在此作用域可以访问的值，包括这个作用域里面的临时变量，类的可访问成员，全局变量。<strong>Lambda表达式通过在最前面的方括号[]来明确指明其内部可以访问的外部变量，这一过程也称过Lambda表达式“捕获”了外部变量。</strong>捕获值的方式分两种，一种是按值捕获，一种是按引用捕获。顾名思义，按值捕获是不改变原有变量的值，按引用捕获是可以在Lambda表达式中改变原有变量的值。<br>2.隐式捕获<br>为了指示编译器推断捕获列表，应在捕获列表中写一个&amp;或者=。前者表示引用捕获，后者表示值捕获。<br>10.21  [&amp;a] ( ) mutable-&gt;bool {a–; return a == 0 ? false : true; }()</p>
-<h4 id="long-long类型"><a href="#long-long类型" class="headerlink" title="long long类型"></a>long long类型</h4><p>在32位系统上，int、long、long long、size_t字节数分别为4、4、8、8；在64位机器上，四者依次为4、8、8、8</p>
-<h4 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h4><p>int a = {0};<br>int a{0};<br>在C++11中，列表初始化得到了全面应用，无论是在初始化对象时，还是为对象赋新值时，都可以使用，并且还有相应的好处，那就是在对内置数据类型进行列表初始化时，如果有数据丢失风险时，编译器会报错。</p>
-<h4 id="nullptr常量"><a href="#nullptr常量" class="headerlink" title="nullptr常量"></a>nullptr常量</h4><p>关于nullptr与NULL区别,nullptr是C++11中新定义的字面值常量，可以转换为任意类型的指针，NULL是预处理变量，其值为0，运行在编译过程之前。</p>
-<h4 id="类型别名声明"><a href="#类型别名声明" class="headerlink" title="类型别名声明"></a>类型别名声明</h4><p>传统采用typedef关键字，C++11中可以使用using作为别名声明的开始，例如：using SI = Sales_item；</p>
-<h4 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h4><p>在C++11中引入了auto类型说明符，可以让编译器替我们去分析表达式所属的类型，auto让编译器通过初始值来推算变量的类型</p>
-<h4 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h4><p>为了更安全使用动态内存，C++11提供了两种智能指针来管理动态对象，负责自动释放所指向的对象。<br>shared_ptr允许多个指针指向同一个对象；unique_ptr则独占所指向的对象，memory头文件  </p>
-<blockquote>
-<p><strong>shared_ptr</strong></p>
-</blockquote>
-<p>shared_ptr<string> p1;<br>shared_ptr<list<string>&gt;p2;<br>if(p1 &amp;&amp; p1-&gt;empty()) *p1 = “hi”;<br>shared_ptr<int> p3 = make_shared<int>(42);//分配一个动态内存，并初始化<br>每个shared_ptr都有一个关联的计数器，通常称其为引用计数，无论何时拷贝，计数器都会递增；当我们给shared_ptr赋予一个新值或是shared_ptr被销毁，计数器就会递减。一旦一个shared_ptr计数器变为0，就会自动释放自己所管理的对象。  </int></int></list<string></string></p>
-<p>程序使用动态内存出于以下三种原因之一：<br>1.程序不知道自己需要使用多少对象<br>2.程序不知道所需对象的准确类型<br>3.程序需要在多个对象间共享数据    </p>
-<p>关于智能指针的底层实现：类中成员变量包含一个指针，一个引用计数，每次构建新的对象时，就初始化指针同时把引用计数置1；当对象作为另一对象的副本创建时，运行拷贝构造函数拷贝指针同时把引用计数增加1；对对象进行赋值（如果引用计数减为0，则删除对象），减少引用计数；调用析构函数时，构造函数减少引用计数（如果引用计数减为0，则删除基础对象）；重载指针的各种运算符（-&gt;、*、+、-等）  </p>
-<blockquote>
-<p>unique_ptr  </p>
-</blockquote>
-<p>一个unique_ptr拥有它所指向的对象，某个时刻智能有一个unique_ptr指向一个给定对象。当unique_ptr被销毁时，所指向的对象也被销毁。不像shared_ptr，不存在make_shared这样的函数，所以与new结合进行。<br>unique_ptr<double> p1;//可以指向一个double的unique_ptr<br>unique_ptr<int> p2(new int(42));<br>unique_ptr不支持拷贝或者赋值操作，但可以通过realease或者reset将指针所有权从一个unique_ptr转移到另一个unique_ptr。<br>p.reset(p1.reslease());<br>realease成员返回unique_ptr当前保存的指针并将其置为空，reset成员接受一个可选的指针参数，令unique_ptr重新指向给定的指针。</int></double></p>
+        <p>本篇主要来自mysql入门很简单</p>
+<h3 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h3><h4 id="显示、创建、删除数据库"><a href="#显示、创建、删除数据库" class="headerlink" title="显示、创建、删除数据库"></a>显示、创建、删除数据库</h4><p>创建数据库：create database test;<br>删除数据库：drop database test;<br>查看数据库：show databases;<br>查看引擎：show engines;  </p>
 
       
       
@@ -244,13 +219,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/21/C++11新特性/">C++11新特性</a></p>
+        <p><span>本文标题:</span><a href="/2017/08/25/mysql总结/">mysql总结</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 一头东哥 的个人博客">一头东哥</a></p>
-        <p><span>发布时间:</span>2017年08月21日 - 21时35分</p>
-        <p><span>最后更新:</span>2017年08月22日 - 16时05分</p>
+        <p><span>发布时间:</span>2017年08月25日 - 16时40分</p>
+        <p><span>最后更新:</span>2017年08月25日 - 18时57分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/21/C++11新特性/" title="C++11新特性">http://yoursite.com/2017/08/21/C++11新特性/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/21/C++11新特性/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/25/mysql总结/" title="mysql总结">http://yoursite.com/2017/08/25/mysql总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/25/mysql总结/　　作者: 一头东哥" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -263,18 +238,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/08/22/进程间通信以及线程死锁总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/31/看面经总结知识点/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          进程间通信以及线程死锁总结
+          看面经总结知识点
         
       </div>
     </a>
   
   
-    <a href="/2017/08/21/IO/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Unix IO</div>
+    <a href="/2017/08/22/进程间通信以及线程死锁总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">进程间通信以及线程死锁总结</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -285,7 +260,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#lambda表达式"><span class="toc-number">1.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#long-long类型"><span class="toc-number">2.</span> <span class="toc-text">long long类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表初始化"><span class="toc-number">3.</span> <span class="toc-text">列表初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nullptr常量"><span class="toc-number">4.</span> <span class="toc-text">nullptr常量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类型别名声明"><span class="toc-number">5.</span> <span class="toc-text">类型别名声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto"><span class="toc-number">6.</span> <span class="toc-text">auto</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#智能指针"><span class="toc-number">7.</span> <span class="toc-text">智能指针</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#操作数据库"><span class="toc-number">1.</span> <span class="toc-text">操作数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#显示、创建、删除数据库"><span class="toc-number">1.1.</span> <span class="toc-text">显示、创建、删除数据库</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -336,13 +311,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/22/进程间通信以及线程死锁总结/" title="上一篇: 进程间通信以及线程死锁总结">
+            <a href="/2017/08/31/看面经总结知识点/" title="上一篇: 看面经总结知识点">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/08/21/IO/" title="下一篇: Unix IO">
+            <a href="/2017/08/22/进程间通信以及线程死锁总结/" title="下一篇: 进程间通信以及线程死锁总结">
                 <i class="fa fa-angle-right"></i>
             </a>
         

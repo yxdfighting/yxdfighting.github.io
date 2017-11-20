@@ -175,6 +175,68 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-毕业设计用到的资料" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/20/毕业设计用到的资料/" class="article-date">
+      <time datetime="2017-11-20T08:58:52.746Z" itemprop="datePublished">2017-11-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/20/毕业设计用到的资料/">毕业设计用到的资料</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="地址链接"><a href="#地址链接" class="headerlink" title="地址链接"></a>地址链接</h2><ul>
+<li><p>关于路径规划<br><a href="https://www.cnblogs.com/shhu1993/p/6942484.html" target="_blank" rel="external">https://www.cnblogs.com/shhu1993/p/6942484.html</a><br><a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7053093（链接中论文已下载）" target="_blank" rel="external">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7053093（链接中论文已下载）</a></p>
+</li>
+<li></li>
+</ul>
+<ul>
+<li></li>
+</ul>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-电信IT研发中心笔试第二题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -766,109 +828,10 @@
 
 
   
-    <article id="post-TCPIP协议族全总结" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2017/08/04/TCPIP协议族全总结/" class="article-date">
-      <time datetime="2017-08-04T02:23:54.826Z" itemprop="datePublished">2017-08-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/04/TCPIP协议族全总结/">TCP/IP全总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p> 马上要有一大波面试了，所以趁着还有时间把面试需要的几块知识做一个完整的总结，主要分为以下几个部分：TCP/IP,操作系统，C++基础，数据库基础。本博为第一部分，关于TCP/IP的总结。</p>
-<h2 id="一-TCP-IP协议基础"><a href="#一-TCP-IP协议基础" class="headerlink" title="(一) TCP/IP协议基础"></a>(一) TCP/IP协议基础</h2><p>TCP/IP不是一个协议，而是一个协议族的统称。里面包含了几个分层的协议，比如网络层的IP协议，传输层的TCP、UDP协议、应用层的http、ftp等协议。<br>首先就要明白TCP/IP协议族的分层，提到分层，我们很容易想到的是OSI七层协议经典架构，为了方便记忆，也可以进行口诀记忆，“物数网传会表应”，但是TCP/IP的分层稍有不同，只分为四层，从上到下依次为应用层、传输层、网络层、数据链路层。简单介绍一下各层，最上面的应用层，里面有http、ftp等协议，再往下为传输层，里面主要有tcp、udp协议，第三层为网络层，IP协议就在这一层，它负责对数据加上IP地址及其它数据以确定发送的目标，最底层为数据链路层，这个层次的定义包括了网线的制式，网卡的定义等；发送协议的主机将数据逐层往下层层封装，而接受数据的主机则按照协议从得到的数据包解开，最终拿到需要的数据。</p>
-<blockquote>
-<p>一些基本的常识：</p>
-<ul>
-<li>互联网IP地址：网络上每个设备节点都必须有一个独立的IP地址，现在通用的IP地址是一个32bit的数字，也就是IPV4标准，将32bit的数字分成4组，也就是常见的255.255.255.255的样式。IPV4标准下，地址被分为五类，我们常用的是B类地址。对用到操作系统,IP地址+端口号对应操作系统的一个进程。</li>
-<li>域名系统：域名系统是一个分布式的数据库，DNS即是把域名即网址转换成IP地址的服务。</li>
-</ul>
-</blockquote>
-<h2 id="二-数据链路层"><a href="#二-数据链路层" class="headerlink" title="(二) 数据链路层"></a>(二) 数据链路层</h2><p>数据链路层有3个目的：</p>
-<ol>
-<li>为IP模块发送和接受IP数据报</li>
-<li>为ARP模块发送ARP请求和接受ARP应答</li>
-<li>为RARP模块发送RARP请求和接受RARP应答</li>
-</ol>
-<p>关于ARP和RARP，ARP叫做地址解析协议，是IP地址与MAC地址转换的协议，而RARP则叫做逆地址解析协议（后面会有详细介绍）。<br>数据链路层还有很多其他的协议，比如我们常用的以太网帧协议，也有不太常见的令牌环,还有FDDI，国内常见的PPP协议(ADSL宽带)，还有loopback协议等。</p>
-<p>由于cmd markdown编辑器贴图还要会员功能，所以我把ifconfig的结果，复制成文字如下所示：</p>
-<blockquote>
-<p>1.eth0 Link encap:Ethernet HWaddr 00:01:4A:03:5B:ED<br>2.inet addr:192.168.11.2 Bcast:192.168.11.255 Mask:255.255.255.0<br>3.inet6 addr: fe80::201:4aff:fe03:5bed/64 Scope:Link<br>4.UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1<br>5.RX packets:2819 errors:0 dropped:0 overruns:0 frame:0<br>6.TX packets:76 errors:0 dropped:0 overruns:0 carrier:0<br>7.collisions:0 txqueuelen:1000<br>8.RX bytes:241609 (235.9 KiB) TX bytes:9596 (9.3 KiB)<br>9.lo Link encap:Local Loopback<br>10.inet addr:127.0.0.1 Mask:255.0.0.0<br>11.inet6 addr: ::1/128 Scope:Host<br>12.UP LOOPBACK RUNNING MTU:16436 Metric:1<br>13.RX packets:2713 errors:0 dropped:0 overruns:0 frame:0<br>14.TX packets:2713 errors:0 dropped:0 overruns:0 carrier:0<br>15.collisions:0 txqueuelen:0<br>16.RX bytes:3516032 (3.3 MiB) TX bytes:3516032 (3.3 MiB)</p>
-</blockquote>
-<p>其中,第一行eth0（如果一台PC上有多个网卡，则会有多个），后面是mac地址（对应网卡）；第二行网络的ip、子网、掩码（后面会有介绍）；第三行表示对应IPv6地址；第四行表示状态，UP表示网卡已经启用，BROADCAST表示支持广播，RUNNING表示网卡正在运行，后面依次为支持多播、最大传输单元、度量值（用于估算路由）；第五行依次表示接受的正确数据包数、错误数据报数、丢弃的数据包数；第六行同第五行；第八行表示接受和发送的字节数；第十行表示主机的回环地址（这个一般是用来测试一个网络程序，但又不想让局域网或外网的用户能够查看，只能在此台主机上运行和查看所用的网络接口）；</p>
-<p>每一种数据链路层协议都有MTU（最大传输单元）的限制，在这个定义下，如果IP数据报过大，就要进行分片，使得每片都小于MTU；可以用netstat -in打印出MTU的结果；下图中上面为以太网，下面为loopback</p>
-<blockquote>
-<p>Kernel Interface table<br>Iface MTU Met RX-OK RX-ERR RX-DRP RX-OV TX-OK TX-ERR TX-DRP TX-OVR<br>eth0  1500 0  1774  0      0      0      587      0      0      0<br>lo  16436  0  2667  0      0      0     2667      0      0      0 </p>
-</blockquote>
-<h2 id="三-IP协议、ARP协议、RARP协议"><a href="#三-IP协议、ARP协议、RARP协议" class="headerlink" title="(三) IP协议、ARP协议、RARP协议"></a>(三) IP协议、ARP协议、RARP协议</h2><p>在网络层，我们主要讲这三个协议，ARP协议主要用来找到目标主机的以太网MAC地址；RARP主要用来通过MAC地址确认IP地址；IP主要用来传载消息；对于数据链路层与网络层之间的关系，数据链路层通过ARP来获得数据的传达信息，通过IP来获得要传输的数据信息。</p>
-<h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h4><p>IP协议以数据报形式进行传输，为上层提供无状态、无连接、不可靠的服务。无连接表示的是IP通信双方都不需要长时间保持连接状态，只需要在传输时，确定目标IP地址；无状态表示的是双方不同步传输数据的状态，每一个IP数据报都是相互独立的，有可能出现重复或者顺序颠倒等，接收端只要接收到完整的IP数据报（如果有分片就先充足），就将数据报交给上层协议，在上层协议看来，这些数据报就是乱的，如果是面向连接的上层协议，如TCP，就能够自己处理这些乱序的数据报，保证传输到应用层的是有序、可靠的数据；不可靠是指IP数据报不保证一定能够达到目的地，很多情况都会导致IP数据报发送失败。</p>
-<h4 id="2-IP协议头部"><a href="#2-IP协议头部" class="headerlink" title="2. IP协议头部"></a>2. IP协议头部</h4><p>IP协议包含至少20字节的头部信息，分为1-4字节（4位版本号、4位首部长度、8位服务类型，16位总长度）；5-8字节（16位标识，3位标志，13位片偏移（分片相对原始IP数据报的偏移））；9-12字节（8位生存时间（从源主机到达目标主机经过的路由跳数上限）、8位协议（用于区分上层协议）、16位首部检验和）；13-16（源IP地址）；17-20（目的IP地址）。</p>
-<h4 id="3-IP分片"><a href="#3-IP分片" class="headerlink" title="3. IP分片"></a>3. IP分片</h4><p> 前面提到了，当IP数据报的长度超过以太网帧的MTU时，就会分片传输，分片可能发生在IP数据报传输的任意过程中，包括发送端、中转路由、目标主机等，但只有在目标主机上，才回将分片的IP数据报进行重组。<br>IP协议头的5-8字节为分片和重组提供了足够的信息，如果发生了分片，那么来自同一IP数据报的分片都有相同的16位标识，但他们的13位片偏移不同，并且除了最后一片分片，其余分片都设置MF标志。</p>
-<h4 id="4-IP路由"><a href="#4-IP路由" class="headerlink" title="4. IP路由"></a>4. IP路由</h4><p>IP协议的一个核心任务是数据报的路由，即决定发送数据报到目标主机的路径。可参考linux高性能服务器编程图2-3，当主机接收到对方的以太网帧时，去掉以太网帧头帧尾，得到IP数据报，首先对该数据报的头部做CRC校验，确认无误之后开始分析IP数据报头部信息。如果IP数据报头部设置了源站选路选项，则IP模块调用数据报转发子模块处理该数据报。如果该IP数据报的头部目标IP地址是本机的某个IP地址，或者是广播地址，那么该数据报就是发给本机的，则IP模块就根据9-12字节的8位协议决定分发给哪个上层应用。如果IP模块发现这个数据报不是发送给本机的，那么就调用数据报转发子模块处理该数据报。（需要检测是否允许转发，IP头部中有该部分信息）。<br>数据转发发至哪一跳路由（或者目标机器），以及经过哪个网卡来发送就是IP路由过程。IP模块实现数据报路由的核心数据转发的结构就是路由表。这个表按照数据报的目标IP地址分类，同一类型的IP数据报将被发往相同的下一跳路由。可以通过route命令看到路由表信息。如下图：<br><img src="_v_images/_image_1501923546_26500.jpg" alt="image"><br>图中依次为目标地址，网关地址，网络掩码，路由项标志，路由距离，最后一项为路由项对应的输出网卡接口。（图中*表示目标和本机在同一个网络中，不需要进行IP路由）<br>每个主机都维护一个路由表，首先，检测TTL，路由中转跳数是否已到，当接收到的IP数据报目标IP地址与路由表中Destination相符时，表明该IP数据报是可以直接发送给目标机器的，不需要经过路由；如果没有相符，那么匹配子网的路由器(子网掩码)；如果没有相符，那么匹配同网号的路由器；如果都失败了，那么搜索默认路由，需要通过网关来转发（网关：网关是具有路由功能的设备的IP地址，每个网络都有自己的网关，当两个IP不在同一个网络时，就需要通过各自的网关进行数据传输）；如果默认路由不存在，那么丢弃这个IP数据包。</p>
-<h5 id="子网寻址"><a href="#子网寻址" class="headerlink" title="* 子网寻址"></a>* 子网寻址</h5><p>IP地址是有网络号+子网号+主机号组成的，比如一个B类IP地址：210.30.109.134,  210.30就是网络号；109就是子网号；134表示主机号；子网掩码中的1对应原IP地址中的网络号加上子网号，0对应主机号；子网掩码与IP地址进行逐位“与”运算，就可以得出网络地址。</p>
-<p> #####* 路由表更新</p>
-<h6 id="手动设置（静态更新）"><a href="#手动设置（静态更新）" class="headerlink" title="* 手动设置（静态更新）"></a>* 手动设置（静态更新）</h6><p>在ernest-laptop的linux下，<br>sudo route add -host 192.168.1.109 dev eth0<br>sudo route del -net 192.168.1.0 netmask 255.255.255.0<br>sudo route del default<br>sudo route add default gw 192.168.1.109 dev eth0<br>第一行表示添加192.168.1.109对应的路由项，这样所有从ernest-laptop发送到Kongming20的IP数据报将通过网卡eth0直接发送至目标机器的接受网卡；<br>第二行表示删除192.168.1.0对应的路由项，这样就无法发送至192.168.1.0局域网下的所有主机；<br>第三行表示删除default对应的路由项，这样就无法发送至广域网<br>第四行表示重新设置默认路由项，不过这次网关设置为Kongming20</p>
-<h6 id="动态更新"><a href="#动态更新" class="headerlink" title="* 动态更新"></a>* 动态更新</h6><p>对于大型的路由器，通常通过BGP、RIP、OSPF等协议来发现路径，并更新路由表。<br>unix系统上面通常都有路由守护程序，–routed。还有一个叫做gate。gate支持的协议较多，gate支持RIPv1、v2，BGPv1等。</p>
-<h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><p>ARP协议能够实现任意网络层地址到任意物理地址的转换，不过我们在此仅仅讨论IP地址到MAC地址的转换。我们知道每个网卡对应一个MAC地址，那么IP地址数据报是如何对应到MAC的呢？以太网ARP请求、应答报文格式如下：<br><img src="_v_images/_image_1501935382_11478.jpg" alt="image"><br>硬件类型表示物理层的地址类型，1表示mac地址；协议类型表示上层协议，0x080表示IP协议。<br>ARP协议是一种解析协议，每个主机也会维护一个IP-ARP地址对应缓存表，之前对应过的二者都会放在这个缓存表里，如果在这个缓存表中，没有查询到对应的IP地址，那么主机就向自己所在网络发送一个ARP协议包，接到这个协议包的主机都会查询自己的IP是否对应，如果对应，那么就准备好一个包含自己MAC地址的ARP包传回至发送ARP广播的主机，那么发送的主机就会更新自己的ARP协议包，发送广播的主机就会用新的ARP协议包得到对应的MAC地址来封装以太网帧。</p>
-<h2 id="四-ICMP协议，ping和Traceroot"><a href="#四-ICMP协议，ping和Traceroot" class="headerlink" title="(四) ICMP协议，ping和Traceroot"></a>(四) ICMP协议，ping和Traceroot</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>IP协议并不是一个可靠的协议，不保证数据传达，ICMP可以在数据不能传达的情况下做出一些补充，ICMP也是位于网络层的协议；<br>具体如下：<br>当IP数据包发生错误：比如主机不可达、路由不可达时，ICMP协议将会把错误信息封包，然后传送回主机。给主机一个处理错误的机会，ICMP数据包由8位的错误类型和8位的代码和16位的校验和组成。8bits类型和8bits代码字段一起决定了ICMP报文的类型。常见的有：类型8、代码0（回射请求），类型0、代码0（回射应答），类型11、代码0（超时）等。</p>
-<p>ICMP协议大致分为两类，一种是查询报文；一种是差错报文。（其中查询报文一般有以下几种用途：ping查询，子网掩码查询，时间戳查询；差错报文则产生在数据传送发生错误的时候）</p>
-<h3 id="ping原理"><a href="#ping原理" class="headerlink" title="ping原理"></a>ping原理</h3><p>ping结果：<br>Reply from 10.4.24.1: bytes=32 time&lt;1ms TTL=255<br>Reply from 10.4.24.1: bytes=32 time&lt;1ms TTL=255<br>Reply from 10.4.24.1: bytes=32 time&lt;1ms TTL=255<br>Reply from 10.4.24.1: bytes=32 time&lt;1ms TTL=255</p>
-<p>Ping statistics for 10.4.24.1:<br>    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),<br>Approximate round trip times in milli-seconds:<br>    Minimum = 0ms, Maximum = 0ms, Average = 0ms</p>
-<p> ping主要利用ICMP协议包来侦测另一个主机是否可达，ping程序主要是通过向目标主机发送类型8、代码0的ICMP报文，如果对方主机可达，就会收到类型0、代码0的ICMP数据包（回射应答），如果不可达，则返回错误信息。time可以大致了解网速，TTL表明经过多少次路由到达，也可以看出有多少包被送达。</p>
-<h3 id="traceroute原理"><a href="#traceroute原理" class="headerlink" title="traceroute原理"></a>traceroute原理</h3><p>traceroute主要用来侦测主机之间的路由情况，traceroute原理非常简单，首先给目的主机发送一个TTL=1的UDP数据包，经过的第一个路由收到这个数据包以后，就自动把TTL减一，而TTL变为0以后，路由器就把这个包抛弃，返回一个ICMP数据报给主机；主机在收到这个包之后就会继续发一个TTL=2的数据报过去，如此，就可以拿到所有路由的ip</p>
-<h2 id="四-TCP、UDP"><a href="#四-TCP、UDP" class="headerlink" title="(四) TCP、UDP"></a>(四) TCP、UDP</h2><h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><p>TCP协议属于传输层协议，相对于UDP三个特点：面向连接、可靠地流式协议；使用TCP协议通信的双方必须先建立连接，然后才能开始数据读写。保持连接需要耗费系统资源。TCP协议的连接是1对1的，所以基于广播和多播的应用程序不能使用TCP服务，而无连接的UDP非常适合于广播和多播。可靠主要体现在两个机制：超时重传、接收确认和滑动窗口，发送端的每个报文段都必须得到接收方的应答，才认为这个TCP报文段传输成功，发送端在发送报文之后开启定时器，如果在定时时间内未收到应答，重发该报文段。关于字节流和数据报区别：字节流发送端执行的写操作字数和接收端执行的读操作次数没有任何数量关系；数据报则不然，发送端每执行一次写操作，UDP模块就将其封装成一个数据报发送。</p>
-<h4 id="1-TCP头部信息"><a href="#1-TCP头部信息" class="headerlink" title="1. TCP头部信息"></a>1. TCP头部信息</h4><p> 1-4字节（16位源端口号和16位目的端口号）、5-8字节（32位序号（初始化的ISN+字节偏移））、9-12字节（32确认号（对收到的报文段序号加1））、13-16字节（4位头部长度（最长60字节）、6位保留、6位标志位、16位窗口大小（告诉对方本端的TCP接收缓冲区还能容纳多少字节数据，进而控制发送速度））、17-20（16位校验和 16位紧急指针），此外还有最多40字节的保留选项<br> 6位标志位：URG、ACK、PSH、RST（要求对方重新建立连接、复位报文）、SYN、FIN</p>
-<h4 id="2-TCP的连接和关闭"><a href="#2-TCP的连接和关闭" class="headerlink" title="2. TCP的连接和关闭"></a>2. TCP的连接和关闭</h4><p>  <img src="_v_images/_image_1502158196_6334.jpg" alt="image"><br>之前面试被问到为什么三次握手？而不能是两次或四次？<br>如果改成两次，会存在这样一种情况：client发送的SYN报文段可能由于某种原因在网络中长时间滞留，由于超时重传，可能已经新的连接建立之后已经关闭了，这时候滞留的SYN报文段发过来，如果只是两次握手，server端会回应ACK，server端就会以为已经建立了连接，这样就会导致资源的浪费，而采用三次握手会有client的再次确认，就可以避免这种现象。四次握手就会出现资源的浪费。<br>四次挥手为什么不能像三次握手一样把ack与server端的FIN合并为一条报文？<br>实际上，仅用于确认目的的报文段5是可以省略的，报文段5是否存在取决于TCP的延迟确认特性</p>
-<h5 id="半关闭状态"><a href="#半关闭状态" class="headerlink" title="半关闭状态"></a>半关闭状态</h5><p> TCP连接是全双工的，允许两个方向的数据传输被独立关闭。发送端发送FIN收到接受端确认，发送端即进入半关闭状态。</p>
-<h4 id="3-TCP状态转移"><a href="#3-TCP状态转移" class="headerlink" title="3. TCP状态转移"></a>3. TCP状态转移</h4><p>  client:CLOSED-&gt;SYN_SEND-&gt;ESTABLISHED-&gt;FIN_WAIT1-&gt;FIN_WAIT2-&gt;TIMEWAIT-&gt;CLSOED<br>  server:CLOSED-&gt;SYN_RECVD-&gt;ESTABLISHED-&gt;CLOSE_WAIT-&gt;LAST_ACK-&gt;CLOSED<br>  需要注意的是client主动关闭时，发送FIN时进入FIN_WAIT1状态，收到ACK，进入FIN_WAIT2状态，收到FIN,发送ACK后进入TIME_WAIT状态，等待2MSL(报文段最大生存时间，建议为2min)后，进入CLOSED。<br>  关于TIME_WAIT状态存在的原因：<br>  1.可靠的终止TCP连接  因为如果对方没有收到最后的ACK，那么TIME_WAIT的等待时间内会继续收到对方的FIN，收到之后会重新发ACK过去，这样就可以保证在ACK丢失的情况下仍然可靠终止TCP连接<br>  2.在linux下，同一个IP+端口是不能被打开2次及以上的，如果不存在TIME_WAIT状态，那么就可以在新的IP+端口上建立TCP连接，这样就有可能把原有的TCP数据（迟到的）接收过来，这样显然是不合适的</p>
-<blockquote>
-<p>与socket编程结合<br>server: socket、bind、listen</p>
-</blockquote>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
